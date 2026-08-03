@@ -1,0 +1,76 @@
+{
+  "name": "Carga Completa SQL Server",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -176,
+        -16
+      ],
+      "id": "24b77e9f-513d-4eb1-8d0f-59c8493ca3ed",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "EXEC staging.sp_ProcessarCargaCompleta;\n\nSELECT\n    'Carga concluída com sucesso' AS Status,\n    GETDATE() AS DataHora,\n    (SELECT COUNT(*) FROM staging.Cliente_TMP) AS Clientes,\n    (SELECT COUNT(*) FROM staging.Fornecedor_TMP) AS Fornecedores,\n    (SELECT COUNT(*) FROM staging.Banco_TMP) AS Bancos,\n    (SELECT COUNT(*) FROM staging.Pagamentos_TMP) AS Pagamentos,\n    (SELECT COUNT(*) FROM staging.Recebimentos_TMP) AS Recebimentos;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.microsoftSql",
+      "typeVersion": 1.1,
+      "position": [
+        16,
+        -16
+      ],
+      "id": "6d3ffd7f-6688-4dad-a87c-54bc0c632fb7",
+      "name": "Microsoft SQL ",
+      "credentials": {
+        "microsoftSql": {
+          "id": "wFehMN40Of0R1d4g",
+          "name": "Microsoft SQL account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Microsoft SQL ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Microsoft SQL ": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "6c16ba7d-e58a-44fb-a4a7-ffcdf4a31c30",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e30570fd83f24a8419a4896e98e2302ca8dff0dc184e0c456aec08dbf4073f47"
+  },
+  "id": "zZISUD6rfilCapLi",
+  "tags": []
+}
