@@ -24,7 +24,7 @@ The solution combines **SQL Server**, **Stored Procedures**, **n8n**, **Power BI
 
 ---
 
-# 🛠 Technologies
+## 🛠 Technologies
 
 | Technology | Purpose |
 |------------|---------|
@@ -38,14 +38,6 @@ The solution combines **SQL Server**, **Stored Procedures**, **n8n**, **Power BI
 | Git & GitHub | Version control and project documentation |
 
 ---
-
-# 🏗 Solution Architecture
-
-A complete overview of the Financial Intelligence Pipeline architecture.
-
-> The solution starts with CSV source files, loads the data into SQL Server through reusable Stored Procedures, orchestrates the ETL with n8n, applies dimensional modeling, and finally delivers executive analytics in Power BI.
->
-> ---
 
 ## 🏗️ Solution Architecture
 
