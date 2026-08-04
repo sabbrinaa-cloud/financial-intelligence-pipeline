@@ -49,3 +49,62 @@ The solution starts with CSV source files, loads the data into SQL Server throug
     <img src="Docs/Slides/01_Arquitetura_Geral.png" width="900">
 </p>
 
+---
+
+## 🔄 ETL Pipeline
+
+The ETL process is fully orchestrated using reusable SQL Server Stored Procedures and automated through n8n.
+
+The pipeline follows a modular architecture where each entity is imported, validated and processed independently before being loaded into the dimensional model.
+
+### Main processing flow
+
+1. Import CSV files into staging tables.
+2. Validate data integrity and business rules.
+3. Process entities through dedicated Stored Procedures.
+4. Execute the complete transactional workflow.
+5. Load data into dimensional tables.
+6. Make the data available for Power BI dashboards.
+
+<p align="center">
+    <img src="Docs/Slides/06_Pipeline_ETL.png" width="950" alt="ETL Pipeline">
+</p>
+
+---
+
+## ⚙️ Workflow Automation (n8n)
+
+The execution of the ETL pipeline is fully automated using n8n.
+
+The workflow is responsible for scheduling the execution, triggering SQL Server Stored Procedures and monitoring the execution status, reducing manual intervention and ensuring process consistency.
+
+<p align="center">
+    <img src="Docs/Slides/07_Workflow_n8n.png" width="900" alt="n8n Workflow">
+</p>
+
+<p align="center">
+    <img src="Docs/Slides/08_Execucao_orquestrada_n8n.png" width="900" alt="Workflow Execution">
+</p>
+
+---
+
+## 🗄️ Dimensional Data Model
+
+The Financial Intelligence Pipeline uses a Star Schema dimensional model to optimize analytical queries and Power BI performance.
+
+The model separates transactional data into Facts and Dimensions, providing scalability, consistency and high-performance reporting.
+
+### Main Components
+
+- Fact Tables
+- Dimension Tables
+- Business Keys
+- Surrogate Keys
+- Referential Integrity
+- Optimized relationships for analytics
+
+<p align="center">
+    <img src="Docs/Slides/05_Modelo_Dados_SQL.png" width="900" alt="Dimensional Data Model">
+</p>
+
+
